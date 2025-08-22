@@ -5,19 +5,24 @@ const Login = () => {
   const [emailId, setEmailId] = useState("virat@gmail.com");
   const [password, setPassword] = useState("Virat@123");
 
-    const handleLogin = async () => {
-       try {
-            const res = await axios.post("http://localhost:3000/login", {
-            emailId,
-            password
-        },{
-            withCredentials:true
-        })
-       } catch (error) {
-        console.log(error); 
-        
-       }
-    } 
+  const handleLogin = async () => {
+    try {
+      const res = await axios.post(
+        "http://localhost:3000/login",
+        {
+          emailId,
+          password,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(res.data);
+      
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="flex justify-center my-20">
@@ -39,7 +44,12 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <div className="card-actions justify-end">
-            <button className="btn btn-primary text-xl px-5" onClick={handleLogin}>LogIn</button>
+            <button
+              className="btn btn-primary text-xl px-5"
+              onClick={handleLogin}
+            >
+              LogIn
+            </button>
           </div>
         </div>
       </div>
