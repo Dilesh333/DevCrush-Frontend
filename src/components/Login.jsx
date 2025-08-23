@@ -8,10 +8,10 @@ import { BASE_URL } from "../utils/constants";
 const Login = () => {
   const [emailId, setEmailId] = useState("");
   const [password, setPassword] = useState("");
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const [error, setError] = useState("");
 
-  
+  const dispatch = useDispatch();
+  const navigate = useNavigate(); 
 
   const handleLogin = async () => {
     try {
@@ -25,10 +25,10 @@ const Login = () => {
           withCredentials: true,
         }
       );
-      dispatch(addUser(res.data))
-      navigate("/")
-      
+      dispatch(addUser(res.data));
+      return navigate("/");
     } catch (error) {
+      setError(error?.response?.data || "Something went wrong");
       console.log(error);
     }
   };
@@ -52,6 +52,9 @@ const Login = () => {
             className="input my-2"
             onChange={(e) => setPassword(e.target.value)}
           />
+          <div>
+            <p className="text-red-500 text-sm font-semibold">{error}</p>
+          </div>
           <div className="card-actions justify-end">
             <button
               className="btn btn-primary text-xl px-5"

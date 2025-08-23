@@ -11,6 +11,7 @@ const Body = () => {
   
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const userData = useSelector((store) => store.user);
 
   const fetchUser = async () => {
@@ -21,8 +22,11 @@ const Body = () => {
       });
       dispatch(addUser(res.data));
     } catch (error) {
-      navigate("/login");
-      console.error(err);
+        if(error.status === 401){
+            navigate("/login");
+        }
+      
+      console.error(error);
     }
   };
 
