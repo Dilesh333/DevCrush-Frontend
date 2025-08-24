@@ -25,7 +25,7 @@ const Feed = () => {
     getFeed();
   }, []);
   return feed && (<div>
-    <UserCard user= {feed[6]}/>
+    <UserCard user= {feed[3]}/>
   </div>)
 };
 
