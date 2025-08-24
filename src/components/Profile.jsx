@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import ProfileCard from "./ProfileCard";
+import UserCard from "./UserCard";
 
 const Profile = () => {
   return (
-    <div>Profile</div>
-  )
-}
+    <div>
+      <ProfileCard/>
+     
+    </div>
+  );
+};
 
-export default Profile
+export default Profile;
