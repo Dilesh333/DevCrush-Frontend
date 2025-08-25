@@ -1,8 +1,23 @@
 import React from "react";
 import { X, Heart } from "lucide-react";
+import { BASE_URL } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { removeUserFromFeed } from "../utils/feedSlice";
+import axios from "axios";
 
 const UserCard = ({ user }) => {
-  const { firstName, lastName, age, photoUrl, about, gender } = user;
+  const { _id, firstName, lastName, age, photoUrl, about, gender } = user;
+
+  const dispatch = useDispatch();
+
+  const handleSendRequest = async (status, userId) => {
+    const res = await axios.post(
+      BASE_URL + "/request/send/" + status + "/" + _id,
+      {},
+      { withCredentials: true }
+    );
+    dispatch(removeUserFromFeed(userId));
+  };
 
   return (
     <div className="flex justify-center mt-10">
@@ -28,12 +43,18 @@ const UserCard = ({ user }) => {
         {/* Tinder Action Buttons */}
         <div className="absolute bottom-1 left-0 w-full flex justify-center gap-6">
           {/* ❌ Reject Button */}
-          <button className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center shadow-lg hover:scale-110 transition cursor-pointer">
+          <button
+            className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center shadow-lg hover:scale-110 transition cursor-pointer"
+            onClick={() => handleSendRequest("ignored", _id)}
+          >
             <X className="text-red-500 w-7 h-7" />
           </button>
 
           {/* ❤️ Like Button */}
-          <button className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center shadow-lg hover:scale-110 transition cursor-pointer">
+          <button
+            className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center shadow-lg hover:scale-110 transition cursor-pointer"
+            onClick={() => handleSendRequest("interested", _id)}
+          >
             <Heart className="text-green-500 w-7 h-7" />
           </button>
         </div>

@@ -15,9 +15,8 @@ const Requests = () => {
         BASE_URL + "/request/review/" + status + "/" + _id,
         {},
         { withCredentials: true }
-        
       );
-      dispatch(removeRequests(_id))
+      dispatch(removeRequests(_id));
     } catch (error) {
       console.error(error);
     }
@@ -54,11 +53,11 @@ const Requests = () => {
         <h1 className="text-2xl font-semibold">Connection Requests</h1>
       </div>
       {requests.map((request) => {
-        const { firstName, lastName, age, photoUrl, gender, about } =
+        const { _id, firstName, lastName, age, photoUrl, gender, about } =
           request.fromUserId;
 
         return (
-          <div className="flex justify-center my-5 ">
+          <div key={_id} className="flex justify-center my-5 ">
             <div className="card card-dash bg-base-200 rounded-4xl w-[600px] ">
               <div className="card-body flex flex-row items-center gap-4 ">
                 <div className="avatar">

@@ -41,11 +41,11 @@ const Connections = () => {
         <h1 className="text-2xl font-semibold">Connections</h1>
       </div>
       {connections.map((connection) => {
-        const { firstName, lastName, age, photoUrl, gender, about } =
+        const { _id, firstName, lastName, age, photoUrl, gender, about } =
           connection;
 
         return (
-          <div className="flex justify-center my-5 ">
+          <div key={_id} className="flex justify-center my-5 ">
             <div className="card card-dash bg-base-200 rounded-4xl w-[600px] ">
               <div className="card-body flex flex-row items-center gap-4 ">
                 <div className="avatar">
