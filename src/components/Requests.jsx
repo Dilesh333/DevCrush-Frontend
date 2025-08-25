@@ -68,7 +68,7 @@ const Requests = () => {
 
                 <div>
                   <h2 className="card-title">{firstName + " " + lastName}</h2>
-                  <p>{about}</p>
+                  <p className="mr-30 line-clamp-3">{about}</p>
                   <div className="card-actions justify-start mt-2"></div>
                 </div>
 
